@@ -14,7 +14,6 @@
 	        var temp = deck[i];
 	        deck[i] = deck[j];
 	        deck[j] = temp;
-	        console.log(deck)
 	    }
 	    return array;
 	}
@@ -41,16 +40,15 @@
 		        this.deck[i] = this.deck[j];
 		        this.deck[j] = temp;
 	    	}
-	    console.log(this.deck)
 	    }
 
-	    reset(){
+	    reset(discardpile){
+	    	discardpile.pile=[]
 	    	let arr=[]
 			for(let i=1; i<53;i++){
 				arr.push(i)
 			}
 			this.deck= arr;
-			console.log(this.deck)
 	    }
 
 	    deal(){
@@ -60,17 +58,41 @@
 	    }
 	}
 
+	class DiscardPile {
+		constructor(){
+			this.pile=[];
+		}
+	}
+
 	class Player{
 		constructor(name){
 			this.name=name;
 			this.hand=[];
 		}
+
+		take(dealt){
+			this.hand.push(dealt);
+		}
+
+		discard(pile){
+			let i = Math.floor(Math.random()*(this.hand.length));
+	    	let discard = this.hand.splice(i,1);
+	    	pile.pile.push(discard);
+	    	return discard;
+		}
 	}
-	deck1= new Deck();
-
-	deck1.deal();
 
 
+	let deck1= new Deck();
+	let discard1= new DiscardPile();
+	let player1= new Player('Mike');
+
+	player1.take(deck1.deal());
+	player1.discard(discard1);
+	console.log(discard1.pile);
+	deck1.reset(discard1);
+	console.log(discard1.pile);
+	console.log(deck1.deck);
 	</script>
 </body>
 </html>
