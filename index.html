@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<script>
+
+	// let array = []
+
+	function shuffleArray(deck) {
+	    for (var i = deck.length - 1; i > 0; i--) {
+	        var j = Math.floor(Math.random() * (i + 1));
+	        var temp = deck[i];
+	        deck[i] = deck[j];
+	        deck[j] = temp;
+	        console.log(deck)
+	    }
+	    return array;
+	}
+
+	// for(let i=1; i < 53; i++){
+	// 	array.push(i);
+	// }
+
+	// shuffleArray(array);
+
+	class Deck {
+		constructor(){
+			let arr=[]
+			for(let i=1; i<53;i++){
+				arr.push(i)
+			}
+			this.deck= arr;
+		}
+
+		shuffle(){
+			for (let i = this.deck.length - 1; i > 0; i--) {
+		        let j = Math.floor(Math.random() * (i + 1));
+		        let temp = this.deck[i];
+		        this.deck[i] = this.deck[j];
+		        this.deck[j] = temp;
+	    	}
+	    console.log(this.deck)
+	    }
+
+	    reset(){
+	    	let arr=[]
+			for(let i=1; i<53;i++){
+				arr.push(i)
+			}
+			this.deck= arr;
+			console.log(this.deck)
+	    }
+
+	    deal(){
+	    	let i = Math.floor(Math.random()*(this.deck.length+1));
+	    	let dealt = this.deck.splice(i,1)
+	    	return dealt;
+	    }
+	}
+
+	class Player{
+		constructor(name){
+			this.name=name;
+			this.hand=[];
+		}
+	}
+	deck1= new Deck();
+
+	deck1.deal();
+
+
+	</script>
+</body>
+</html>
